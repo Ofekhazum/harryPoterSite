@@ -1,0 +1,78 @@
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/cart.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main>
+        <h1>Shopping Cart</h1>
+        <div class="cart-container">
+            <% if (cart.length === 0) { %>
+                <div class="empty-cart">
+                    <h2>Your cart is empty</h2>
+                    <a href="/products-catalog" class="continue-shopping">Continue Shopping</a>
+                </div>
+            <% } else { %>
+                <div class="cart-items-wrapper">
+                    <div class="cart-items">
+                        <% cart.forEach(product => { %>
+                            <div class="cart-item">
+                                <img src="<%= product.image_url %>" alt="<%= product.item_name %>" class="cart-item-image">
+                                <div class="cart-item-details">
+                                    <h2><%= product.item_name %></h2>
+                                    <p>Price: £<%= product.price %></p>
+                                    <p>Quantity: <%= product.quantity %></p>
+                                    <form method="POST" action="/cart/update">
+                                        <input type="hidden" name="productId" value="<%= product._id %>">
+                                        <input type="number" name="quantity" value="<%= product.quantity %>" min="1" max="<%= product.quantity_in_stock %>">
+                                        <button type="submit">Update</button>
+                                    </form>
+                                    <form method="POST" action="/cart/remove">
+                                        <input type="hidden" name="productId" value="<%= product._id %>">
+                                        <button type="submit">Remove</button>
+                                    </form>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                    <div class="cart-pagination">
+                        <% if (currentPage > 1) { %>
+                            <a href="?page=<%= currentPage - 1 %>&limit=<%= limit %>">Previous</a>
+                        <% } %>
+
+                        <% for (let i = 1; i <= totalPages; i++) { %>
+                            <a href="?page=<%= i %>&limit=<%= limit %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+                        <% } %>
+
+                        <% if (currentPage < totalPages) { %>
+                            <a href="?page=<%= currentPage + 1 %>&limit=<%= limit %>">Next</a>
+                        <% } %>
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+                    <h2>Order Summary</h2>
+                    <p>Total Items: <%= totalItems %></p>
+                    <p>Total Price: £<%= totalPrice %></p>
+                    <a href="<%= cart.length > 0 ? '/checkout' : '#' %>" class="checkout-link">
+                        <button type="submit" <%= cart.length === 0 ? 'disabled' : '' %>>Proceed to Checkout</button>
+                    </a>
+                </div>
+            <% } %>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+<script src="/scripts/contextMenu.js"></script>
+<script src="/scripts/wishlist.js"></script>
+<script src="/scripts/moveToCartFromWishlist.js"></script>
+
+</html>
