@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hogwarts Emporium</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/about.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main class="about-container">
+        <section class="about-content">
+            <h1>About Us</h1>
+            <p>
+                Welcome to The Harry Potter Store, your ultimate destination for all things Harry Potter!<br>Our store offers a wide selection of items from clothes and wands to collectibles and home decorations.
+            </p>
+            <p>
+                We promise to provide you with the highest quality of items.<br>We are grateful for your decision to use our store,<br>where you can find all the items that will make you travel as a wizard or a witch.
+            </p>
+            <div class="developers">
+                <h2>Developers:</h2>
+                <ul>
+                    <li>Ofek Hazum</li>
+                    <li>Yogev Hadad</li>
+                    <li>Amit Filer</li>
+                    <li>Aviya Ohayon</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+
+    <div id="searchModal" class="modal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Search Products</h2>
+          <input type="text" id="searchInput" placeholder="Search for products...">
+          <div id="resultsContainer" class="results-container"></div>
+      </div>
+  </div>
+
+    <%- include('partials/footer') %>
+
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit-code.js" crossorigin="anonymous"></script>
+    <script src="/js/script.js"></script>
+
+</body>
+<script src="/scripts/scrollTopBtn.js"></script>
+<script src="/scripts/contextMenu.js"></script>
+<script src="/scripts/wishlist.js"></script>
+<script src="/scripts/moveToCartFromWishlist.js"></script>
+<script src="/scripts/search.js"></script>
+
+</html>
