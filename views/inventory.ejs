@@ -1,0 +1,229 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/inventory.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main>
+        <h1>Inventory Management</h1>
+        <button id="addProductButton">Add New Product</button>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Subcategory</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% products.forEach(product => { %>
+                        <tr data-id="<%= product._id %>">
+                            <td><input type="text" name="item_id" value="<%= product.item_id %>" disabled></td>
+                            <td><input type="text" name="item_name" value="<%= product.item_name %>" disabled></td>
+                            <td><input type="text" name="item_description" value="<%= product.item_description %>" disabled></td>
+                            <td><input type="text" name="category" value="<%= product.category %>" disabled></td>
+                            <td><input type="text" name="subcategory" value="<%= JSON.stringify(product.subcategory) %>" disabled></td>
+                            <td><input type="number" name="price" value="<%= product.price %>" disabled></td>
+                            <td><input type="number" name="quantity_in_stock" value="<%= product.quantity_in_stock %>" disabled></td>
+                            <td>
+                                <img src="<%= product.image_url %>" alt="<%= product.item_name %>" class="product-image">
+                                <input type="text" name="image_url" value="<%= product.image_url %>" style="display:'none'" disabled>
+                            </td>
+                            <td>
+                                <button class="editButton">Edit</button>
+                                <button class="deleteButton">Delete</button>
+                                <button class="saveButton" style="display: none;">Save</button>
+                                <button class="cancelButton" style="display: none;">Cancel</button>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination">
+            <% if (currentPage > 1) { %>
+                <a href="?page=<%= currentPage - 1 %>">&laquo; Previous</a>
+            <% } %>
+
+            <% for (let i = 1; i <= totalPages; i++) { %>
+                <a href="?page=<%= i %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+            <% } %>
+
+            <% if (currentPage < totalPages) { %>
+                <a href="?page=<%= currentPage + 1 %>">Next &raquo;</a>
+            <% } %>
+        </div>
+    </main>
+
+    <div id="addProductModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="addProductForm" method="POST" action="/inventory/add">
+                <label for="item_id">Item ID:</label>
+                <input type="text" id="item_id" name="item_id" required>
+
+                <label for="item_name">Item Name:</label>
+                <input type="text" id="item_name" name="item_name" required>
+
+                <label for="item_description">Item Description:</label>
+                <input type="text" id="item_description" name="item_description" required>
+
+                <label for="category">Category:</label>
+                <input type="text" id="category" name="category" required>
+
+                <label for="subcategory">Subcategory:</label>
+                <input type="text" id="subcategory" name="subcategory" required>
+
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" required>
+
+                <label for="quantity_in_stock">Quantity in Stock:</label>
+                <input type="number" id="quantity_in_stock" name="quantity_in_stock" required>
+
+                <label for="image_url">Image URL:</label>
+                <input type="text" id="image_url" name="image_url" required>
+
+                <button type="submit">Add Product</button>
+            </form>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addProductButton = document.getElementById('addProductButton');
+            const addProductModal = document.getElementById('addProductModal');
+            const closeModal = document.querySelector('.close');
+
+            addProductButton.addEventListener('click', function() {
+                addProductModal.style.display = 'block';
+            });
+
+            closeModal.addEventListener('click', function() {
+                addProductModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target === addProductModal) {
+                    addProductModal.style.display = 'none';
+                }
+            });
+
+            const editButtons = document.querySelectorAll('.editButton');
+            const deleteButtons = document.querySelectorAll('.deleteButton');
+            const saveButtons = document.querySelectorAll('.saveButton');
+            const cancelButtons = document.querySelectorAll('.cancelButton');
+
+            editButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const row = button.closest('tr');
+                    toggleEditState(row, true);
+                });
+            });
+
+            cancelButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const row = button.closest('tr');
+                    toggleEditState(row, false);
+                });
+            });
+
+            saveButtons.forEach(button => {
+                button.addEventListener('click', async function() {
+                    const row = button.closest('tr');
+                    const productId = row.dataset.id;
+                    const inputs = row.querySelectorAll('input');
+
+                    const updatedProduct = {
+                        item_id: inputs[0].value,
+                        item_name: inputs[1].value,
+                        item_description: inputs[2].value,
+                        category: inputs[3].value,
+                        subcategory: inputs[4].value,
+                        price: inputs[5].value,
+                        quantity_in_stock: inputs[6].value,
+                        image_url: inputs[7].value,
+                    };
+
+                    await fetch(`/inventory/update/${productId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(updatedProduct)
+                    });
+
+                    toggleEditState(row, false);
+                });
+            });
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', async function() {
+                    const row = button.closest('tr');
+                    const productId = row.dataset.id;
+
+                    if (confirm('Are you sure you want to delete this product?')) {
+                        await fetch(`/inventory/delete/${productId}`, {
+                            method: 'POST'
+                        });
+
+                        row.remove();
+                    }
+                });
+            });
+
+            function toggleEditState(row, isEditing) {
+                const inputs = row.querySelectorAll('input');
+                const image = row.querySelector('.product-image');
+
+                inputs.forEach(input => {
+                    input.disabled = !isEditing;
+                });
+
+                if (isEditing) {
+                    image.style.display = 'none';
+                    row.querySelector('input[name="image_url"]').style.display = 'block';
+                } else {
+                    image.style.display = 'block';
+                    row.querySelector('input[name="image_url"]').style.display = 'none';
+                }
+
+                row.querySelector('.editButton').style.display = isEditing ? 'none' : 'inline-block';
+                row.querySelector('.deleteButton').style.display = isEditing ? 'none' : 'inline-block';
+                row.querySelector('.saveButton').style.display = isEditing ? 'inline-block' : 'none';
+                row.querySelector('.cancelButton').style.display = isEditing ? 'inline-block' : 'none';
+            }
+        });
+    </script>
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Search Products</h2>
+        <input type="text" id="searchInput" placeholder="Search for products...">
+        <div id="resultsContainer" class="results-container"></div>
+    </div>
+</div>
+</body>
+
+<script src="/scripts/search.js"></script>
+<script src="/scripts/contextMenu.js"></script>
+<script src="/scripts/wishlist.js"></script>
+<script src="/scripts/moveToCartFromWishlist.js"></script>
+
+</html>
