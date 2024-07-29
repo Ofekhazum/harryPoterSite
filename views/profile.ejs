@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main>
+        <h1>My Profile</h1>
+        <% if (user && Object.keys(user).length > 0) { %>
+            <form id="profileForm" method="POST" action="/profile">
+                <label for="first_name">First Name:</label>
+                <input type="text" id="first_name" name="first_name" value="<%= user.first_name %>" disabled>
+
+                <label for="last_name">Last Name:</label>
+                <input type="text" id="last_name" name="last_name" value="<%= user.last_name %>" disabled>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="<%= user.email %>" disabled>
+
+                <label for="date_of_birth">Date of Birth:</label>
+                <input type="date" id="date_of_birth" name="date_of_birth" value="<%= user.date_of_birth %>" disabled>
+
+                <label for="street">Street:</label>
+                <input type="text" id="street" name="street" value="<%= user.address ? user.address.street : '' %>" disabled>
+
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" value="<%= user.address ? user.address.city : '' %>" disabled>
+
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state" value="<%= user.address ? user.address.state : '' %>" disabled>
+
+                <label for="postal_code">Postal Code:</label>
+                <input type="text" id="postal_code" name="postal_code" value="<%= user.address ? user.address.postal_code : '' %>" disabled>
+
+                <label for="gender">Gender:</label>
+                <input type="text" id="gender" name="gender" value="<%= user.gender %>" disabled>
+
+                <label for="user_type">User Type:</label>
+                <input type="text" id="user_type" name="user_type" value="<%= user.user_type %>" disabled>
+
+                <div class="button-container">
+                    <button type="button" id="editButton">Edit Details</button>
+                    <button type="submit" id="submitButton" disabled>Submit</button>
+                    <button type="button" id="resetButton" disabled>Reset</button>
+                </div>
+            </form>
+        <% } else { %>
+            <p>You must be logged in to view and edit your profile details.</p>
+        <% } %>
+    </main>
+
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Search Products</h2>
+            <input type="text" id="searchInput" placeholder="Search for products...">
+            <div id="resultsContainer" class="results-container"></div>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>
+</body>
+<script src="/scripts/profileForm.js"></script>
+<script src="/scripts/contextMenu.js"></script>
+<script src="/scripts/wishlist.js"></script>
+<script src="/scripts/moveToCartFromWishlist.js"></script>
+<script src="/scripts/search.js"></script>
+
+
+</html>
