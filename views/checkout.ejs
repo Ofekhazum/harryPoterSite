@@ -1,0 +1,165 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/checkout.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main class="checkout-container">
+        <div class="details-form">
+            <h1>Shipping Details</h1>
+
+            <form id="checkoutForm" method="POST" action="/checkout">
+                <label for="street">Street:</label>
+                <input type="text" id="street" name="street" required>
+
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required>
+
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state" required>
+
+                <label for="zip">Postal Code:</label>
+                <input type="text" id="zip" name="zip" required>
+
+                <label for="orderNotes">Order Notes:</label>
+                <textarea id="orderNotes" name="orderNotes"></textarea>
+
+                <input type="hidden" name="orderTotal" value="<%= parseInt(totalPrice) %>">
+                
+                <button type="submit">Proceed to Payment</button>
+            </form>
+        </div>
+
+        <div class="cart-summary">
+            <h1>Cart Summary</h1>
+            <div class="cart-items">
+                <% cart.forEach(product => { %>
+                    <div class="cart-item">
+                        <img src="<%= product.image_url %>" alt="<%= product.item_name %>">
+                        <div class="item-details">
+                            <h2><%= product.item_name %></h2>
+                            <p>Price: £<%= product.price %></p>
+                            <p>Quantity: <%= product.quantity %></p>
+                            <p>Total: £<%= product.price * product.quantity %></p>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+            <div class="cart-summary-details">
+                <p>Total Items: <%= totalItems %></p>
+                <p>Total Price: £<%= totalPrice %></p>
+            </div>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Search Products</h2>
+            <input type="text" id="searchInput" placeholder="Search for products...">
+            <div id="resultsContainer" class="results-container"></div>
+        </div>
+    </div>
+    
+</body>
+<!-- <script src="/scripts/scrollTopBtn.js"></script> -->
+<script src="/scripts/checkoutFormValidation.js"></script>
+<script src="/scripts/contextMenu.js"></script>
+<script src="/scripts/wishlist.js"></script>
+<script src="/scripts/moveToCartFromWishlist.js"></script>
+<script src="/scripts/search.js"></script>
+
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main class="checkout-container">
+        <div class="details-form">
+            <h1>Shipping Details</h1>
+
+            <form id="checkoutForm" method="POST" action="/checkout">
+                <label for="street">Street:</label>
+                <input type="text" id="street" name="street" required>
+
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required>
+
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state" required>
+
+                <label for="zip">Postal Code:</label>
+                <input type="text" id="zip" name="zip" required>
+
+                <label for="country">Country:</label>
+                <input list="countryList" id="country" name="country" required>
+                <datalist id="countryList"></datalist>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="orderNotes">Order Notes:</label>
+                <textarea id="orderNotes" name="orderNotes"></textarea>
+
+                <input type="hidden" name="orderTotal" value="<%= parseInt(totalPrice) %>">
+                
+                <button type="submit">Proceed to Payment</button>
+            </form>
+        </div>
+
+        <div class="cart-summary">
+            <h1>Cart Summary</h1>
+            <div class="cart-items">
+                <% cart.forEach(product => { %>
+                    <div class="cart-item">
+                        <img src="<%= product.image_url %>" alt="<%= product.item_name %>">
+                        <div class="item-details">
+                            <h2><%= product.item_name %></h2>
+                            <p>Price: £<%= product.price %></p>
+                            <p>Quantity: <%= product.quantity %></p>
+                            <p>Total: £<%= product.price * product.quantity %></p>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+            <div class="cart-summary-details">
+                <p>Total Items: <%= totalItems %></p>
+                <p>Total Price: £<%= totalPrice %></p>
+            </div>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
+    <script src="/scripts/countryAutocomplete.js"></script>
+    <script src="/scripts/checkoutFormValidation.js"></script>
+    <script src="/scripts/contextMenu.js"></script>
+    <script src="/scripts/wishlist.js"></script>
+    <script src="/scripts/moveToCartFromWishlist.js"></script>
+    <script src="/scripts/telToCountryInput.js"></script>
+</body>
+</html> -->
