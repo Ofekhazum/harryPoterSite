@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spells - Hogwarts Emporium</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/spells.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <button id="scrollTopButton"><i class="chevron-up-icon"></i></button>
+
+    <main class="spells-container">
+        <h1>Spells</h1>
+
+        <div class="spells-list">
+            <% spells.forEach(spell => { %>
+                <div class="spell-card">
+                    <h2><%= spell.attributes.name %></h2>
+                    <p><strong>Category:</strong> <%= spell.attributes.category %></p>
+                    <p><strong>Effect:</strong> <%= spell.attributes.effect %></p>
+                    <img src="<%= spell.attributes.image || 'https://potterdb.com/images/missing_spell.svg' %>" alt="<%= spell.attributes.name %>" class="spell-image">
+                    <p><a href="<%= spell.attributes.wiki %>" target="_blank" class="more-info-btn">More info</a></p>
+                </div>
+            <% }) %>
+        </div>
+
+        <div class="pagination">
+            <% if (currentPage > 1) { %>
+                <a href="/spells?page=<%= currentPage - 1 %>" class="pagination-button">Previous</a>
+            <% } %>
+            <% for (let i = 1; i <= totalPages; i++) { %>
+                <a href="/spells?page=<%= i %>" class="pagination-button <%= i === currentPage ? 'active' : '' %>"><%= i %></a>
+            <% } %>
+            <% if (currentPage < totalPages) { %>
+                <a href="/spells?page=<%= currentPage + 1 %>" class="pagination-button">Next</a>
+            <% } %>
+        </div>
+    </main>
+
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Search Products</h2>
+            <input type="text" id="searchInput" placeholder="Search for products...">
+            <div id="resultsContainer" class="results-container"></div>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>
+</body>
+<script src="/scripts/scrollTopBtn.js"></script>
+<script src="/scripts/contextMenu.js"></script>
+<script src="/scripts/wishlist.js"></script>
+<script src="/scripts/moveToCartFromWishlist.js"></script>
+<script src="/scripts/search.js"></script>
+
+</html>
+
