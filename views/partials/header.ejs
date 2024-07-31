@@ -1,0 +1,74 @@
+
+
+<header class="flex-header">
+    <a href="/"><img class="logo" src="https://harrypottershop.co.uk/cdn/shop/t/22/assets/logo_hpshop.svg" alt="Hogwarts Emporium Logo"></a>
+    <div class="icons">
+        <a href="#" title="search"><i class="search-icon"></i></a>
+        <a href="/cart" title="cart"><i class="cart-icon"></i></a>
+
+        <div class="context-menu-container">
+            <button id="contextMenuButton" class="context-menu-button">
+                <i class="menu-icon"></i>
+            </button>
+            <div id="contextMenu" class="context-menu">
+                <ul>
+                    <li><a href="/profile">My Profile</a></li>
+                    <li><a href="/orders-history">Purchases History</a></li>
+                    <% if (user && user.user_type === 'Admin') { %>
+                        <li><a href="/users-management">User Management</a></li>
+                        <li><a href="/inventory">Inventory Management</a></li>
+                        <li><a href="/statistics">Order Stats</a></li>
+                    <% } %>
+                    <% if (user && Object.keys(user).length > 0) { %>
+                        <li><a href="/logout" title="logout"><i class="logout-icon">Logout</i></a></li>
+                    <% } else { %>
+                        <li><a href="/login" title="login"><i class="login-icon">Login</i></a></li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+
+        <% if (user) { %>
+            <div class="wishlist-container">
+                <button id="wishlistButton" class="wishlist-button">
+                    <i class="profile-icon"></i> 
+                    <span>Wishlist</span>
+                </button>
+                <div id="wishlistDropdown" class="wishlist-dropdown">
+                    <% if (wishlist && wishlist.length > 0) { %>
+                        <ul>
+                            <% wishlist.forEach((product, index) => { %>
+                                <li id="wishlist-item-<%= product._id %>">
+                                    <img src="<%= product.image_url %>" alt="<%= product.item_name %>">
+                                    <span><%= product.item_name %></span>
+                                    <span>£<%= product.price %></span>
+                                    <form id="move-to-cart-form-<%= index %>" class="wishlist-form" method="POST">
+                                        <input type="hidden" name="productId" value="<%= product._id %>">
+                                        <input type="hidden" name="category" value="<%= product.category %>">
+                                        <input type="hidden" name="price" value="<%= product.price %>">
+                                        <button class="add-to-cart-button" type="submit">Add to Cart</button>
+                                    </form>
+                                    <form class="remove-from-wishlist-form" method="POST">
+                                        <input type="hidden" name="productId" value="<%= product._id %>">
+                                        <button class="remove-button" type="submit">Remove</button>
+                                    </form>
+                                </li>
+                            <% }) %>
+                        </ul>
+                    <% } else { %>
+                        <p>No items in wishlist</p>
+                    <% } %>
+                </div>    
+            </div>
+        <% } %>
+    </div>
+</header>
+
+<nav class="navigation">
+    <ul>
+        <li><a href="/products-catalog">Products</a></li>
+        <li><a href="/charecters">Characters</a></li>
+        <li><a href="/spells">All Spells</a></li>
+        <li><a href="/about-us">About Us</a></li>
+    </ul>
+</nav>
