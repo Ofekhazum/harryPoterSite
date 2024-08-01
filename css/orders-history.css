@@ -6,11 +6,10 @@ body {
 }
 
 main {
-    max-width: 800px;
+    max-width: 80vw;
     margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 2vh 6vw;
+    margin-bottom: 5vh;
 }
 
 h1 {
@@ -22,8 +21,12 @@ h1 {
     border: 1px solid #ddd;
     margin-bottom: 20px;
     padding: 20px;
-    border-radius: 5px;
-    background-color: #fafafa;
+    background: rgba( 255, 255, 255, 0.35 );
+    box-shadow: 0 8px 32px 0 rgba( 146, 145, 145, 0.37 );
+    backdrop-filter: blur( 3.5px );
+    -webkit-backdrop-filter: blur( 3.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .order h2 {

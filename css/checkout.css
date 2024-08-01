@@ -8,9 +8,12 @@
 .details-form,
 .cart-summary {
     width: 45%;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    background-color: #fff;
+    background: rgba( 255, 255, 255, 0.3 );
+    backdrop-filter: blur( 3.5px );
+    -webkit-backdrop-filter: blur( 3.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding: 4vh 2vw;
 }
 
 .details-form h1,
@@ -37,7 +40,7 @@
 
 .details-form button {
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #A98655;
     color: white;
     border: none;
     border-radius: 5px;
@@ -46,11 +49,11 @@
 }
 
 .details-form button:hover {
-    background-color: #45a049;
+    background-color: #8e6f43;
 }
 
 .cart-summary .cart-items {
-    max-height: 400px;
+    max-height: 70vh;
     overflow-y: auto;
     margin-bottom: 20px;
 }
@@ -61,11 +64,24 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background: rgba( 170, 135, 85, 1 );
+    backdrop-filter: blur( 3.5px );
+    -webkit-backdrop-filter: blur( 3.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    color: white;
 }
 
+
+.cart-item p{
+    color:#654227;
+}
+
+.cart-item h2{
+    color:#654227;
+}
 .cart-item img {
     max-width: 200px;
-    margin-right: 15px;
 }
 
 .cart-item .item-details {
@@ -80,4 +96,8 @@
 .cart-summary-details {
     font-size: 18px;
     font-weight: bold;
+}
+
+.cart-summary-details p {
+    color: black;
 }
