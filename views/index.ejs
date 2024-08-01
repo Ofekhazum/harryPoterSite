@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div id="particles-js"></div>
     <%- include('partials/header') %>
 
     <main>
@@ -15,7 +16,13 @@
         <button id="scrollTopButton"><i class="chevron-up-icon"></i></button>
 
         <section class="hero">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/OoRR6pB-Lp0?si=LgYThiuwWe18c56Q&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div class="video-container">
+              <video width="900" height="700" controls autoplay>
+                  <source src="/assets/harry-potter.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+              </video>
+            </div>
+  
             <h1>Welcome to Hogwarts Emporium</h1>
             <p>Your one-stop shop for all things magical!</p>
         </section>
@@ -54,9 +61,14 @@
 
     <%- include('partials/footer') %>
 
-    <script src="https://kit.fontawesome.com/your-fontawesome-kit-code.js" crossorigin="anonymous"></script>
     <script src="/js/script.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script>
+        particlesJS.load('particles-js', '/assets/particles.json', function() {
+            console.log('particles.js loaded - callback');
+        });
+    </script>
 </body>
 <script src="/scripts/scrollTopBtn.js"></script>
 <script src="/scripts/contextMenu.js"></script>

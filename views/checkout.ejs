@@ -128,22 +128,18 @@
 
             const countryData = iti.getSelectedCountryData();
             console.log("Selected country data:", countryData); // Debug log
+            const countryNameParts = countryData.name.split(' ');
+            const firstPartOfCountryName = countryNameParts[0];
+            console.log("First part of country name:", firstPartOfCountryName); // D
             if (countryInputField && countryData) {
-                countryInputField.value = countryData.name;
+                countryInputField.value = firstPartOfCountryName;
                 console.log({countryData});
                 phonePrefixField.value = `${countryData.dialCode}`;
             }
         }
 
-        // phoneInputField.addEventListener('input', function() {
-        //     const countryData = iti.getSelectedCountryData();
-        //     const prefix = countryData.dialCode;
-        //     console.log("asdAASDASDASDASDASDASDAAD");
-        //     phoneInputField.value = countryData.dialCode + phoneInputField.value.slice(prefix.length);
-
-        // });
         phoneInputField.addEventListener('countrychange', updateCountryData);
-        updateCountryData(); // Initialize with the correct country data on page load
+        updateCountryData();
 
     });
 </script>

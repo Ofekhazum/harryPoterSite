@@ -1,18 +1,53 @@
 :root {
     --color-alpha: #b78846;
-  }
+}
+
+@font-face {
+    font-family: 'HarryPotter';
+    src: url('/assets/fonts/DragonHunter.woff2') format('woff2'),
+         url('/assets/fonts/DragonHunter.ttf') format('otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 body {
-    font-family: 'Times New Roman', serif;
+    font-family: 'HarryPotter','Times New Roman', serif;
     margin: 0;
     padding: 0;
-    /* color: #929191; */
-
     width: 100%;
-
     background-image: url('https://images.pexels.com/photos/1367192/pexels-photo-1367192.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
     background-position: left center;
     background-size: cover;
+}
+
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Ensure it is behind other content */
+}
+
+.video-container {
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+   
+}
+
+video {
+    width: 100%;
+    height: auto;
+    max-width: 640px; /* Or any desired max width */
+    border: 1px solid #000;
+    border-radius: 8px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+    box-shadow: 0px 3px 17px -3px rgba(0,0,0,0.36);
+    -webkit-box-shadow: 0px 3px 17px -3px rgba(0,0,0,0.36);
+     -moz-box-shadow: 0px 3px 17px -3px rgba(0,0,0,0.36); 
 }
 
 header {
@@ -74,9 +109,10 @@ body:after {
 }
 
 .welcome-text {
-    font-family: 'Harry P', sans-serif; /* Ensure you have a Harry Potter styled font */
+    /* font-family: 'HarryPotter', sans-serif;  */
+    font-family: 'HarryPotter';
     font-size: 1.5em;
-    color: #AA8755; /* Hufflepuff yellow */
+    color: #AA8755;
     margin-right: 20px;
     text-decoration: none;
     transition: color 0.3s ease;
