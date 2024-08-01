@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hogwarts Emporium</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="particles-js"></div>
+    <%- include('partials/header') %>
+
+    <main>
+      <div class="page-content">
+
+        <button id="scrollTopButton"><i class="chevron-up-icon"></i></button>
+
+        <section class="hero">
+            <div class="video-container">
+              <video width="900" height="700" controls autoplay>
+                  <source src="/assets/harry-potter.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+              </video>
+            </div>
+  
+            <h1>Welcome to Hogwarts Emporium</h1>
+            <p>Your one-stop shop for all things magical!</p>
+        </section>
+
+        <section class="featured-products">
+            <h2 class="featured-products-title">Best Sellers</h2>
+            <br/>
+            <div class="products-row">
+              <% bestSellers.forEach(product => { %>
+                <%- include('components/home/productCard', {product}); %>
+              <% }) %>
+            </div>
+        </section>
+        <br/>
+        
+        <section class="featured-products">
+          <h2 class="featured-products-title">New In</h2>
+          <br/>
+          <div class="products-row">
+            <% newIn.forEach(product => { %>
+              <%- include('components/home/productCard', {product}); %>
+            <% }) %>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <div id="searchModal" class="modal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Search Products</h2>
+          <input type="text" id="searchInput">
+          <div id="resultsContainer" class="results-container"></div>
+      </div>
+  </div>
+
+    <%- include('partials/footer') %>
+
+    <script src="/js/script.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script>
+        particlesJS.load('particles-js', '/assets/particles.json', function() {
+            console.log('particles.js loaded - callback');
+        });
+    </script>
+</body>
+<script src="/scripts/scrollTopBtn.js"></script>
+<script src="/scripts/contextMenu.js"></script>
+<script src="/scripts/wishlist.js"></script>
+<script src="/scripts/moveToCartFromWishlist.js"></script>
+<script src="/scripts/search.js"></script>
+
+</html>

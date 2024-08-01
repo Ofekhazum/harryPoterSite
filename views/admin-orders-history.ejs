@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Orders</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/orders-history.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <main>
+    <h1>Order History for User: <%= user.first_name %> <%= user.last_name %></h1>
+
+    <div class="orders-container">
+        <% if (orders.length > 0) { %>
+            <% orders.forEach(order => { %>
+                <div class="order">
+                    <h2>Order ID: <%= order.orderId %></h2>
+                    <p>Order Date: <%= new Date(order.orderDate).toLocaleDateString() %></p>
+                    <p>Order Total: £<%= order.orderTotal %></p>
+                    <p>Number of Items: <%= order.numberOfItems %></p>
+                    <p>Order Notes: <%= order.orderNotes %></p>
+                    <h3>Shipping Address:</h3>
+                    <p><%= order.shippingAddress.street %>, <%= order.shippingAddress.city %>, <%= order.shippingAddress.state %> <%= order.shippingAddress.zip %></p>
+                    <h3>Products:</h3>
+                    <ul>
+                        <% order.products.forEach(product => { %>
+                            <li class="product-item">
+                                <img src="<%= product.image_url %>" alt="<%= product.item_name %>" class="product-image">
+                                <span><%= product.item_name %> - £<%= product.price %> x <%= product.quantity %></span>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p>You have no orders.</p>
+        <% } %>
+    </div>
+</main>
+
+  <%- include('partials/footer') %>
+
+  <div id="searchModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Search Products</h2>
+        <input type="text" id="searchInput">
+        <div id="resultsContainer" class="results-container"></div>
+    </div>
+</div>
+</body>
+<script src="/scripts/contextMenu.js"></script>
+<script src="/scripts/wishlist.js"></script>
+<script src="/scripts/moveToCartFromWishlist.js"></script>
+<script src="/scripts/search.js"></script>
+
+</html>

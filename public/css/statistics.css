@@ -1,0 +1,115 @@
+
+.important-stats-container {
+    display: flex;
+    justify-content: space-around;
+    
+    margin: 5vh 2vw;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stat {
+    flex: 1;
+    text-align: center;
+    margin: 0 10px;
+  }
+  
+  .stat h2 {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: #333;
+  }
+  
+  .stat p {
+    font-size: 2em;
+    color: #1a1a1a;
+    font-weight: bold;
+  }
+
+
+
+.bar {
+    fill: #a98655; /* Gryffindor red */
+  }
+
+  .tooltip {
+    position: absolute;
+    text-align: center;
+    padding: 8px;
+    font: 12px 'Lumos', sans-serif; /* Harry Potter themed font */
+    background: #EEE117; /* Hufflepuff yellow */
+    border: 2px solid #000; /* Black border */
+    border-radius: 8px;
+    pointer-events: none;
+  }
+
+  .axis text {
+    fill: #000; /* Black color for axis text */
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000; /* Black color for axis lines */
+    shape-rendering: crispEdges;
+  }
+
+  .chart-title {
+    text-align: center;
+    font-size: 24px;
+    color: black;
+    margin-top: 10px;
+  }
+
+  .graph-nav-btn {
+    background-color: #AA8755; /* Slytherin green */
+    color: #654227; /* Hufflepuff yellow */
+    border: none;
+    padding: 1vh 2vw;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 5px;
+  }
+
+  .graph-nav-btn:hover {
+    background-color: #654227;
+    color: #AA8755;
+  }
+
+  .charts{
+    display: flex;
+    align-items: center;
+  }
+
+  .charts-title {
+    margin-left: 5vw;
+    width: fit-content;
+  }
+  .chart-container {
+  margin: 5vh 2vw;
+  padding: 10vh 0vw 2vh 0 ;
+  /* background-color: aquamarine;
+  border-radius: 5px; */
+  background: rgba( 255, 255, 255, 0.5 );
+box-shadow: 0 8px 32px 0 rgba( 146, 145, 145, 0.37 );
+backdrop-filter: blur( 3.5px );
+-webkit-backdrop-filter: blur( 3.5px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+  }
+
+  #dailyRevenueControls{
+    display: flex;
+    align-items: center;
+    margin-right: 2vw;
+    justify-content: flex-end;
+  }
+
+  #regionalSalesChart, #categorySalesChart, #monthlyRevenueChart, #dailyRevenueChart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

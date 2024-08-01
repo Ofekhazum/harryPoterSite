@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products - Hogwarts Emporium</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/all-products.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main>
+        <div class="content-container">
+            <aside class="filter-box">
+                <h2>Filter Products</h2>
+                <form id="filterForm" method="GET" action="/products">
+                    <div class="filter-group">
+                        <label for="category">Category</label>
+                        <select id="category" name="category">
+                            <option value="">All</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Accessories">Accessories</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="price">Price Range: <span id="priceValue">£0 - £500</span></label>
+                        <input type="range" id="price" name="price" min="0" max="500" step="10" value="<%= price %>" oninput="updatePriceValue(this.value);">
+                    </div>
+                    <div class="filter-group">
+                        <label>Sort By</label>
+                        <ul class="filter-list">
+                            <li data-value="" class="<%= !sort ? 'selected' : '' %>">None</li>
+                            <li data-value="price-asc" class="<%= sort === 'price-asc' ? 'selected' : '' %>">Lowest to Highest Price</li>
+                            <li data-value="price-desc" class="<%= sort === 'price-desc' ? 'selected' : '' %>">Highest to Lowest Price</li>
+                            <li data-value="name-asc" class="<%= sort === 'name-asc' ? 'selected' : '' %>">A-Z</li>
+                            <li data-value="name-desc" class="<%= sort === 'name-desc' ? 'selected' : '' %>">Z-A</li>
+                        </ul>
+                        <input type="hidden" id="sort" name="sort" value="<%= sort %>">
+                    </div>
+                    <div class="filter-action-btns">
+                        <button type="submit" class="filter-btn">Apply Filters</button>
+                        <button id="reset-filter" class="filter-btn smaller-action">Reset</button>
+                    </div>
+                </form>
+            </aside>
+            <section class="products">
+                <div class="products-grid">
+                    <% products.forEach(product => { %>
+                        <div class="product-card">
+                            <a href="/product/<%= product.item_id %>"><img src="<%= product.image_url %>" alt="<%= product.item_name %>" class="product-image"></a>
+                            <h3><%= product.item_name %></h3>
+                            <p>£<%= product.price %></p>
+                            <form id="move-to-cart-form" class="wishlist-form" method="POST">
+                                <input type="hidden" name="productId" value="<%= product._id %>">
+                                <input type="hidden" name="category" value="<%= product.category %>">
+                                <input type="hidden" name="price" value="<%= product.price %>">
+                                <input type="hidden" name="productName" value="<%= product.item_name %>">
+                                <button class="product-col-cart-btn" type="submit">Add To Cart</button>
+                            </form>
+                        </div>
+                    <% }) %>
+                </div>
+                <div class="pagination">
+                    <% if (currentPage > 1) { %>
+                        <a href="?page=<%= currentPage - 1 %>&limit=<%= limit %>&sort=<%= sort %>&category=<%= category %>&price=<%= price %>" class="prev">&laquo; Previous</a>
+                    <% } %>
+
+                    <% for (let i = 1; i <= totalPages; i++) { %>
+                        <a href="?page=<%= i %>&limit=<%= limit %>&sort=<%= sort %>&category=<%= category %>&price=<%= price %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+                    <% } %>
+
+                    <% if (currentPage < totalPages) { %>
+                        <a href="?page=<%= currentPage + 1 %>&limit=<%= limit %>&sort=<%= sort %>&category=<%= category %>&price=<%= price %>" class="next">Next &raquo;</a>
+                    <% } %>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Search Products</h2>
+            <input type="text" id="searchInput">
+            <div id="resultsContainer" class="results-container"></div>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>
+
+    <script src="/js/script.js"></script>
+</body>
+<script src="/scripts/scrollTopBtn.js"></script>
+<script src="/scripts/contextMenu.js"></script>
+<script src="/scripts/wishlist.js"></script>
+<script src="/scripts/productsFilter.js"></script>
+<script src="/scripts/moveToCartFromWishlist.js"></script>
+<script src="/scripts/search.js"></script>
+
+
+
+</html>

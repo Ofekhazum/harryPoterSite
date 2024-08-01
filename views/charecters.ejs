@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Potter Characters</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/characters.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+    <main class="characters-container">
+        <% characters.forEach(character => { %>
+            <div class="character-card">
+                <img src="<%= character.image %>" alt="<%= character.name %>" class="character-image">
+                <div class="character-details">
+                    <h2><%= character.name %></h2>
+                    <p><strong>Alternate Names:</strong> <%= character.alternate_names.join(', ') %></p>
+                    <p><strong>Species:</strong> <%= character.species %></p>
+                    <p><strong>Gender:</strong> <%= character.gender %></p>
+                    <p><strong>House:</strong> <%= character.house %></p>
+                    <p><strong>Date of Birth:</strong> <%= character.dateOfBirth || 'Unknown' %></p>
+                    <p><strong>Year of Birth:</strong> <%= character.yearOfBirth %></p>
+                    <p><strong>Wizard:</strong> <%= character.wizard ? 'Yes' : 'No' %></p>
+                    <p><strong>Ancestry:</strong> <%= character.ancestry %></p>
+                    <p><strong>Eye Colour:</strong> <%= character.eyeColour %></p>
+                    <p><strong>Hair Colour:</strong> <%= character.hairColour %></p>
+                    <p><strong>Wand:</strong> <%= character.wand.wood ? character.wand.wood + ', ' + character.wand.core + ', ' + character.wand.length + ' inches' : 'Unknown' %></p>
+                    <p><strong>Patronus:</strong> <%= character.patronus %></p>
+                    <p><strong>Hogwarts Student:</strong> <%= character.hogwartsStudent ? 'Yes' : 'No' %></p>
+                    <p><strong>Hogwarts Staff:</strong> <%= character.hogwartsStaff ? 'Yes' : 'No' %></p>
+                    <p><strong>Actor:</strong> <%= character.actor %></p>
+                    <p><strong>Alternate Actors:</strong> <%= character.alternate_actors.join(', ') %></p>
+                    <p><strong>Alive:</strong> <%= character.alive ? 'Yes' : 'No' %></p>
+                </div>
+            </div>
+        <% }) %>
+    </main>
+
+    <div id="searchModal" class="modal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Search Products</h2>
+          <input type="text" id="searchInput">
+          <div id="resultsContainer" class="results-container"></div>
+      </div>
+  </div>
+
+    <%- include('partials/footer') %>
+</body>
+<script src="/scripts/contextMenu.js"></script>
+<script src="/scripts/wishlist.js"></script>
+<script src="/scripts/moveToCartFromWishlist.js"></script>
+<script src="/scripts/search.js"></script>
+</html>
