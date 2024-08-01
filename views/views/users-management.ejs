@@ -61,11 +61,14 @@
                   </select>
                 </td>
                 <td>
-                  <button type="button" class="editButton">Edit</button>
-                  <button type="submit" class="submitButton" style="display: none;">Submit</button>
-                  <button type="button" class="cancelButton" style="display: none;">Cancel</button>
-                  <button type="button" class="deleteButton">Delete</button>
-                  <a href="/admin/orders-history/<%= user._id %>">Order History</a>
+                  <div class="actions-wrapper">
+                    <button type="button" class="editButton">Edit</button>
+                    <button type="submit" class="submitButton" style="display: none;">Submit</button>
+                    <button type="button" class="cancelButton" style="display: none;">Cancel</button>
+                    <button type="button" class="deleteButton">Delete</button>
+                    <!-- <a href="/admin/orders-history/<%= user._id %>">Order History</a> -->
+                    <a href="/admin/orders-history/<%= user._id %>" class="orderHistoryButton">Order History</a>
+                  </div>
                 </td>
               </form>
             </tr>
@@ -92,47 +95,72 @@
   <div id="addUserModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <form action="/users-management" method="POST">
-        <label for="first_name">First Name:</label>
-        <input type="text" id="first_name" name="first_name" required>
+      <h1>Add User</h1>
+      <form class="add-user-form" action="/users-management" method="POST">
 
-        <label for="last_name">Last Name:</label>
-        <input type="text" id="last_name" name="last_name" required>
+        <div class="form-row">
+          <label for="first_name">First Name:</label>
+          <input type="text" id="first_name" name="first_name" required>
+        </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <div class="form-row">
+          <label for="last_name">Last Name:</label>
+          <input type="text" id="last_name" name="last_name" required>
+        </div>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <div class="form-row">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
 
-        <label for="date_of_birth">Date of Birth:</label>
-        <input type="date" id="date_of_birth" name="date_of_birth" required>
+        <div class="form-row">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+        </div>
 
-        <label for="street">Street:</label>
-        <input type="text" id="street" name="street">
+        <div class="form-row">
+          <label for="date_of_birth">Date of Birth:</label>
+          <input type="date" id="date_of_birth" name="date_of_birth" required>
+        </div>
 
-        <label for="city">City:</label>
-        <input type="text" id="city" name="city">
+        <div class="form-row">
+          <label for="street">Street:</label>
+          <input type="text" id="street" name="street">
+        </div>
 
-        <label for="state">State:</label>
-        <input type="text" id="state" name="state">
+        <div class="form-row">
+          <label for="city">City:</label>
+          <input type="text" id="city" name="city">
+        </div>
 
-        <label for="postal_code">Postal Code:</label>
-        <input type="text" id="postal_code" name="postal_code">
+        <div class="form-row">
+          <label for="state">State:</label>  
+          <input type="text" id="state" name="state">
+        </div>
 
-        <label for="gender">Gender:</label>
-        <select id="gender" name="gender">
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
+        <div class="form-row">
+          <label for="postal_code">Postal Code:</label>
+          <input type="text" id="postal_code" name="postal_code">
+        </div>
 
-        <label for="user_type">User Type:</label>
-        <select id="user_type" name="user_type">
-          <option value="Regular">Regular</option>
-          <option value="Admin">Admin</option>
-        </select>
+        <div class="form-row">
+          <label for="gender">Gender:</label>
+          <select id="gender" name="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
 
+
+        <div class="form-row">
+          <label for="user_type">User Type:</label>
+          <select id="user_type" name="user_type">
+            <option value="Regular">Regular</option>
+            <option value="Admin">Admin</option>
+          </select>
+        </div>
+          
         <button type="submit">Add User</button>
       </form>
     </div>
@@ -142,7 +170,7 @@
     <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Search Products</h2>
-        <input type="text" id="searchInput" placeholder="Search for products...">
+        <input type="text" id="searchInput">
         <div id="resultsContainer" class="results-container"></div>
     </div>
 </div>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/statistics.css">
+
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <main>
+    <div class="important-stats-container headshot ">
+      <div class="stat">
+        <h2>Total Revenue</h2>
+        <p>£<%= totalRevenue %></p>
+      </div>
+      <div class="stat">
+        <h2>Total Orders</h2>
+        <p><%= totalOrders %></p>
+      </div>
+      <div class="stat">
+        <h2>Total Items Sold</h2>
+        <p><%= totalItemsSold %></p>
+      </div>
+    </div>
+
+
+    <h1 class="charts-title">Order Statistics Visualization</h1>
+    <div id="charts">
+      <div class="chart-container">
+        <h2 class="chart-title">Daily Revenue Chart</h2>
+        <div id="dailyRevenueTitle" class="chart-title"></div>
+        <div id="dailyRevenueChart"></div>
+        <div id="dailyRevenueControls">
+          <button class="graph-nav-btn" id="prevDaily">Previous</button>
+          <button class="graph-nav-btn" id="nextDaily">Next</button>
+        </div>
+      </div>
+      
+    
+      <div class="chart-container"> 
+        <h2 class="chart-title">Monthly Revenue Chart</h2> 
+        <div id="monthlyRevenueTitle" class="chart-title"></div>
+        <div id="monthlyRevenueChart"></div>
+      </div>
+
+     <div class="chart-container">
+      <h2 class="chart-title">Category Sales Chart</h2>
+       <div id="categorySalesChart"></div>
+     </div>
+     <div class="chart-container">
+      <h2 class="chart-title">Regional Sales Chart</h2>
+       <div id="regionalSalesChart"></div>
+     </div>
+    </div>
+  </main>
+
+  <div id="searchModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Search Products</h2>
+        <input type="text" id="searchInput">
+        <div id="resultsContainer" class="results-container"></div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
+</body>
+<script src="/scripts/contextMenu.js"></script>
+<script src="/scripts/wishlist.js"></script>
+<script src="/scripts/moveToCartFromWishlist.js"></script>
+<script src="/scripts/search.js"></script>
+<script src="/scripts/charts.js"></script>
+
+</html>
