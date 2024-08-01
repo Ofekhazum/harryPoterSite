@@ -14,7 +14,7 @@ const forwardAuthenticated = (req, res, next) => {
     }
     res.redirect('/');
 };
-
+// Ensure the user is an admin
 const ensureAdmin = (req, res, next) => {
     if (req.isAuthenticated() && req.user.user_type === 'Admin') {
       return next();

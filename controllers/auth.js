@@ -34,21 +34,8 @@ exports.postSignup = async (req, res, next) => {
     const users = database.collection('users');
 
     await users.insertOne(newUser);
-
-    // await newUser.save();
-
+    
     res.render('login');
-
-    // req.login(newUser, (err) => {
-    //     if (err) {
-    //       return next(err);
-    //     }
-    //     console.log('User signed up successfully - in the login step: ', newUser);
-    //     // Simulate login after successful signup
-    //     req.body.email = email;
-    //     req.body.password = password;
-    //     this.postLogin(req, res, next);
-    //   });
     } catch (err) {
       console.error('Error during sign-up:', err);
       res.status(500).send('Internal Server Error');
@@ -69,6 +56,6 @@ exports.postLogin = (req, res, next) => {
 
 exports.logout = (req, res) => {
   req.logout(() => {
-    res.redirect('/login');
+    res.redirect('/');
   });
 };

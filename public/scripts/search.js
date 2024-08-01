@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
             resultsContainer.appendChild(productRow);
             });
         } else {
-            resultsContainer.innerHTML = '<p>No products found</p>';
+            resultsContainer.innerHTML = '<p class="no-products">No products found</p>';
         }
     };
 
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (query.length > 0) {
             fetchProducts(query);
         } else {
-            resultsContainer.innerHTML = '<p>No products found</p>';
+            resultsContainer.innerHTML = '<p class="no-products">No products found</p>';
         }
     }, 300));
 });

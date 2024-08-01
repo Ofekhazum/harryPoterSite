@@ -12,6 +12,16 @@ const getStatsDocument = async () => {
     return await getCollection("orderStats").findOne();
 }
 
+const getOrderStats = async (req, res) => {
+    try {
+      const stats = await getStatsDocument();
+      res.status(200).json(stats);
+    } catch (error) {
+      res.status(500).send('Error retrieving order statistics.');
+    }
+  
+}
+
 const getTotalRevenue = async () => {
     const orderStats = await getStatsDocument();
     return orderStats ? orderStats.totalRevenue : 0;
@@ -68,5 +78,6 @@ module.exports = {
   getTotalOrders,
   getTotalItemsSold,
   getTopProducts,
-  getTopCategories
+  getTopCategories,
+  getOrderStats
 };

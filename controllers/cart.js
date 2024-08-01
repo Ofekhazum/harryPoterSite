@@ -16,6 +16,7 @@ const getCartPage = async (req, res) => {
       return {
         ...product,
         quantity: cartItem ? cartItem.quantity : 0,
+        size: cartItem&& cartItem.size,
       };
     });
 
@@ -42,14 +43,14 @@ const getCartPage = async (req, res) => {
 }
 
 const addCartItem = async (req, res) => {
-    const { productId, quantity, price, category } = req.body;
+    const { productId, quantity, price, category, size, productName } = req.body;
     const cart = req.session.cart || [];
   
     const existingItemIndex = cart.findIndex(item => item.productId === productId);
     if (existingItemIndex !== -1) {
       cart[existingItemIndex].quantity += parseInt(quantity);
     } else {
-      cart.push({ productId, quantity: parseInt(quantity), price: parseInt(price), category });
+      cart.push({ productId, quantity: parseInt(quantity), price: parseInt(price), category, size, productName });
     }
   
     req.session.cart = cart;

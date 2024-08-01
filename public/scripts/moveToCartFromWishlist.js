@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const removeWishlistData = await removeWishlistResponse.json();
 
             if (addCartData.success && removeWishlistData.success) {
-                alert('Product added to cart and removed from wishlist!');
+                alert('Product added to cart');
                 window.location.reload();
             } else {
                 alert('Failed to add product to cart or remove from wishlist.');

@@ -4,10 +4,10 @@ document.getElementById('addToCartForm').addEventListener('submit', async functi
     const form = event.target;
     const formData = new FormData(form);
     const productId = formData.get('productId');
-    const quantity = formData.get('quantity');
+    const quantity = formData.get('quantity') || 1;
     const price = formData.get('price');
     const category = formData.get('category');
-    const size = formData.get('selectedSize');
+    const size = formData.get('selectedSize') || 'M';
     const productName = formData.get('productName');
 
     

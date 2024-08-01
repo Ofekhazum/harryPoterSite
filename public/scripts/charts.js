@@ -78,13 +78,13 @@ let dailyRevenueCurrentIndex = 0;
         .attr("width", x.bandwidth())
         .attr("height", d => height - y(d[yLabel]))
         .on("mouseover", function(event, d) {
-          d3.select(this).attr("fill", "#0E1A40"); // Ravenclaw blue
+          d3.select(this).attr("fill", "#ffff"); // Ravenclaw blue
           tooltip.transition()
             .duration(200)
             .style("opacity", .9);
           tooltip.html(`${xLabel}: ${d[xLabel]}<br>${yLabel}: ${d[yLabel]}`)
-            .style("background", "#0E1A40") // Ravenclaw blue
-            .style("color", "#EEE117") // Hufflepuff yellow
+            .style("background", "#ffff") // Ravenclaw blue
+            .style("color", "#333") // Hufflepuff yellow
             .style("border-color", "#000") // Black border
             .style("left", (event.pageX + 5) + "px")
             .style("top", (event.pageY - 28) + "px");

@@ -30,7 +30,6 @@ module.exports = (passport) => {
   );
 
   passport.serializeUser((user, done) => {
-    console.log("serialize User: ", user);
     done(null, {...user, id: user._id  });
   });
 
@@ -43,11 +42,19 @@ module.exports = (passport) => {
     
         const userId = new mongoose.Types.ObjectId(id);
 
-        const user = await users.findOne({ "_id": userId});
+        let filter = { _id: userId };
+
+        const user = await users.findOne(filter);
       
+        if (!user) {
+          console.log('User not found in deserializeUser');
+          return done(null, false);
+        }
+  
         done(null, user);
 
     } catch (err) {
+      console.log('Error in deserializeUser:', err);
       done(err, false);
     }
   });
