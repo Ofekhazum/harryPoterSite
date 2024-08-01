@@ -1,0 +1,105 @@
+
+.spells-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2vh 2vw 4vh 2vw;
+}
+
+.spells-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.spell-card {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.spell-card h2 {
+    margin-top: 0;
+}
+
+.spell-card p {
+    margin: 10px 0;
+}
+
+.spell-image {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 4px;
+
+    color: #AA8755;
+
+    /* width: 4vw;
+    height: 4vh;
+    transition: color .3s ease-in; */
+
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+/* .more-info-btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.more-info-btn:hover {
+    background-color: #555;
+} */
+
+.more-info-btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+}
+
+.more-info-btn:hover {
+    background-color: #555;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    margin: 0 5px;
+    padding: 10px 15px;
+    background: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.pagination a.active {
+    background: #555;
+}
+
+.pagination a:hover {
+    background: #111;
+}
