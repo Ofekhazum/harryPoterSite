@@ -27,10 +27,11 @@ router.post('/wishlist/add/:id', ensureAuthenticated, (req, res) => {
 
 // Remove item from wishlist
 router.post('/wishlist/remove', ensureAuthenticated, (req, res) => {
-  // const productId = req.params.id;
   const { productId } = req.body;
-  req.session.wishlist = req.session.wishlist.filter(id => id !== productId);
-  res.redirect('back');
+  if(req.session.wishlist) {
+    req.session.wishlist = req.session.wishlist.filter(id => id !== productId);
+  }
+  res.json({ success: true });
 });
 
 module.exports = router;

@@ -18,8 +18,9 @@ const orderSchema = new Schema({
   shippingAddress: {
     street: String,
     city: String,
-    state: String,
     zip: String,
+    phone: String,
+    country: String,
   },
   orderTotal: {
     type: Number,

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getTotalRevenue, getTotalOrders, getTotalItemsSold, getTopProducts, getTopCategories } = require('../controllers/orderStats');
+const { getTotalRevenue, getTotalOrders, getTotalItemsSold, getTopProducts, getTopCategories, getOrderStats } = require('../controllers/orderStats');
 const { ensureAdmin } = require('../middleware/auth');
 
 router.get('/statistics', ensureAdmin ,async (req, res) => {
@@ -24,5 +24,7 @@ router.get('/statistics', ensureAdmin ,async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+router.get('/getOrderStats', getOrderStats);
 
 module.exports = router;
