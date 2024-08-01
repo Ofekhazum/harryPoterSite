@@ -1,0 +1,269 @@
+
+body {
+  font-family: 'Times New Roman', serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: #333;
+}
+
+#addUserButton {
+  margin-bottom: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 1vh 2vw;
+  background-color: #a98655;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.table-container {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 8px 32px 0 rgba(137, 106, 62, 0.37);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.user-table th,
+.user-table td {
+  padding: 10px;
+  background-color: #a98655;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.user-table th {
+  background-color: #a98655;
+  color: white;
+  font-size: 1.1em;
+}
+
+.user-table td {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #333;
+  height: 20vh;
+}
+
+.user-table input,
+.user-table select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.user-table input:disabled,
+.user-table select:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.button-container button,
+.button-container a {
+  margin-right: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  border: none;
+  text-decoration: none;
+  color: white;
+}
+
+.actions-wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+}
+
+.editButton {
+  background-color: #0e1a40;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  outline: 0;
+  padding: 1vh 1vw;
+
+}
+
+.editButton:hover {
+  background-color: #0d1a3f;
+}
+
+.submitButton {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  outline: 0;
+  padding: 1vh 1vw;
+
+}
+
+.submitButton:hover {
+  background-color: #0069d9;
+}
+
+.cancelButton {
+  background-color: #896a3e;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  outline: 0;
+  /* padding: 5px 10px; */
+  padding: 1vh 1vw;
+
+}
+
+.cancelButton:hover {
+  background-color: #94754a;
+}
+
+.deleteButton {
+  background-color: #740001;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  outline: 0;
+  /* padding: 5px 10px; */
+  padding: 1vh 1vw;
+}
+
+.deleteButton:hover {
+  background-color: #ae0001;
+}
+
+.orderHistoryButton {
+  color: black;
+  width: 9vw;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.pagination {
+  margin-top: 4vh;
+  text-align: center;
+  margin-bottom: 4vh;
+}
+
+.pagination a {
+  margin: 0 5px;
+  padding: 5px 10px;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination a.active {
+  background-color: #d9d9d9;
+  color: #333;
+}
+
+.pagination a.prev,
+.pagination a.next {
+  background-color: #f0f0f0;
+  color: #333;
+  border-radius: 5px;
+}
+
+.pagination a.prev:hover,
+.pagination a.next:hover {
+  background-color: #ddd;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+  padding-top: 60px;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-user-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 1vh;
+  padding: 2vh 0;
+  width: 50vw;
+}
+
+.add-user-form button{
+  margin-top: 2vh;
+  background-color: #a98655;
+  padding: 2vh 2vw;
+  border: none;
+  border-radius: 5px;
+  outline: 0;
+  cursor: pointer;
+  color: white;
+  font-size: 1rem;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1vw;
+  margin-bottom: 2vh;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  right: 2vw;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

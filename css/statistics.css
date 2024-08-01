@@ -31,7 +31,7 @@
 
 
 .bar {
-    fill: #740001; /* Gryffindor red */
+    fill: #a98655; /* Gryffindor red */
   }
 
   .tooltip {
@@ -59,23 +59,24 @@
   .chart-title {
     text-align: center;
     font-size: 24px;
-    color: #0E1A40; /* Ravenclaw blue */
-    margin-top: 20px;
+    color: black;
+    margin-top: 10px;
   }
 
   .graph-nav-btn {
-    background-color: #1A472A; /* Slytherin green */
-    color: #EEE117; /* Hufflepuff yellow */
+    background-color: #AA8755; /* Slytherin green */
+    color: #654227; /* Hufflepuff yellow */
     border: none;
-    padding: 10px 20px;
+    padding: 1vh 2vw;
     font-size: 16px;
     cursor: pointer;
     margin: 5px;
-    border-radius: 2px;
+    border-radius: 5px;
   }
 
   .graph-nav-btn:hover {
-    background-color: #0D6217;
+    background-color: #654227;
+    color: #AA8755;
   }
 
   .charts{
@@ -93,7 +94,7 @@
   /* background-color: aquamarine;
   border-radius: 5px; */
   background: rgba( 255, 255, 255, 0.5 );
-box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+box-shadow: 0 8px 32px 0 rgba( 146, 145, 145, 0.37 );
 backdrop-filter: blur( 3.5px );
 -webkit-backdrop-filter: blur( 3.5px );
 border-radius: 10px;

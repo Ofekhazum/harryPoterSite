@@ -3,7 +3,7 @@ body {
   }
   
   main {
-    padding: 20px;
+    padding: 5vh 2vw;
   }
   
   h1 {
@@ -12,8 +12,17 @@ body {
   }
   
   form {
-    max-width: 600px;
+    width: 50vw;
+    display: flex;
     margin: 0 auto;
+    padding: 4vh 4vw;
+    flex-direction: column;
+    background: rgba( 255, 255, 255, 0.35 );
+    box-shadow: 0 8px 32px 0 rgba( 146, 145, 145, 0.37 );
+    backdrop-filter: blur( 3.5px );
+    -webkit-backdrop-filter: blur( 3.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
   }
   
   label {
@@ -22,41 +31,12 @@ body {
   }
   
   input {
-    width: 100%;
     padding: 8px;
     margin-top: 5px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
-  
-  /* button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  button#submitButton {
-    background-color: #008CBA;
-  }
-  
-  button#submitButton:hover {
-    background-color: #007bb5;
-  }
-   */
-
-  
-
 
   .button-container {
     display: flex;
@@ -65,7 +45,6 @@ body {
 }
 
 button {
-    padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -74,16 +53,19 @@ button {
 #editButton {
     background-color: #4CAF50;
     color: white;
+    padding: 1vh 2vw;
 }
 
 #editButton:disabled {
     background-color: #9e9e9e;
     cursor: not-allowed;
+    padding: 1vh 2vw;
 }
 
 #submitButton {
     background-color: #008CBA;
     color: white;
+    padding: 1vh 2vw;
 }
 
 #submitButton:disabled {
