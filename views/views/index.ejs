@@ -22,15 +22,12 @@
 
         <section class="featured-products">
             <h2 class="featured-products-title">Best Sellers</h2>
-
+            <br/>
             <div class="products-row">
               <% bestSellers.forEach(product => { %>
                 <%- include('components/home/productCard', {product}); %>
               <% }) %>
             </div>
-            <% {%>
-             user
-            <% }%>
         </section>
         <br/>
         
@@ -50,7 +47,7 @@
       <div class="modal-content">
           <span class="close">&times;</span>
           <h2>Search Products</h2>
-          <input type="text" id="searchInput" placeholder="Search for products...">
+          <input type="text" id="searchInput">
           <div id="resultsContainer" class="results-container"></div>
       </div>
   </div>

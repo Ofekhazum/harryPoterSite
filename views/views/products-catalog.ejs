@@ -38,20 +38,26 @@
                         </ul>
                         <input type="hidden" id="sort" name="sort" value="<%= sort %>">
                     </div>
-                    <button type="submit">Apply Filters</button>
-                    <button id="reset-filter">Reset</button>
+                    <div class="filter-action-btns">
+                        <button type="submit" class="filter-btn">Apply Filters</button>
+                        <button id="reset-filter" class="filter-btn smaller-action">Reset</button>
+                    </div>
                 </form>
             </aside>
             <section class="products">
-                <h1>All Products</h1>
                 <div class="products-grid">
                     <% products.forEach(product => { %>
                         <div class="product-card">
-                            <img src="<%= product.image_url %>" alt="<%= product.item_name %>" class="product-image">
+                            <a href="/product/<%= product.item_id %>"><img src="<%= product.image_url %>" alt="<%= product.item_name %>" class="product-image"></a>
                             <h3><%= product.item_name %></h3>
-                            <p><%= product.item_description %></p>
                             <p>£<%= product.price %></p>
-                            <a href="/product/<%= product.item_id %>">View Details</a>
+                            <form id="move-to-cart-form" class="wishlist-form" method="POST">
+                                <input type="hidden" name="productId" value="<%= product._id %>">
+                                <input type="hidden" name="category" value="<%= product.category %>">
+                                <input type="hidden" name="price" value="<%= product.price %>">
+                                <input type="hidden" name="productName" value="<%= product.item_name %>">
+                                <button class="product-col-cart-btn" type="submit">Add To Cart</button>
+                            </form>
                         </div>
                     <% }) %>
                 </div>
@@ -76,7 +82,7 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Search Products</h2>
-            <input type="text" id="searchInput" placeholder="Search for products...">
+            <input type="text" id="searchInput">
             <div id="resultsContainer" class="results-container"></div>
         </div>
     </div>

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/cart.css">
 </head>
-<body>
+<body data-is-logged-in="<%= user._id %>">
     <%- include('partials/header') %>
 
     <main>
@@ -29,9 +29,12 @@
                                     <h2><%= product.item_name %></h2>
                                     <p>Price: £<%= product.price %></p>
                                     <p>Quantity: <%= product.quantity %></p>
+                                    <% if(product.size){ %>
+                                        <p>Size: <%= product.size %></p>
+                                      <% } %>
                                     <form method="POST" action="/cart/update">
                                         <input type="hidden" name="productId" value="<%= product._id %>">
-                                        <input type="number" name="quantity" value="<%= product.quantity %>" min="1" max="<%= product.quantity_in_stock %>">
+                                        <input type="number" class="product-quantity-input" name="quantity" value="<%= product.quantity %>" min="1" max="<%= product.quantity_in_stock %>">
                                         <button type="submit">Update</button>
                                     </form>
                                     <form method="POST" action="/cart/remove">
@@ -70,9 +73,20 @@
     </main>
 
     <%- include('partials/footer') %>
+
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Search Products</h2>
+            <input type="text" id="searchInput">
+            <div id="resultsContainer" class="results-container"></div>
+        </div>
+    </div>
 </body>
 <script src="/scripts/contextMenu.js"></script>
 <script src="/scripts/wishlist.js"></script>
 <script src="/scripts/moveToCartFromWishlist.js"></script>
+<script src="/scripts/search.js"></script>
+<script src="/scripts/cart.js"></script>
 
 </html>
