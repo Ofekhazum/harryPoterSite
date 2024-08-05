@@ -1,3 +1,4 @@
+// /1. ייבוא ספריות ומודולים/ 
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -10,6 +11,7 @@ const MongoStore = require('connect-mongo');
 const { connectToDatabase, serverURI } = require('./core/db');
 const { attachUser, fetchWishlist } = require('./middleware/auth');
 
+// 2. ייבוא קבצי נתיבים (Routes)
 const authRoutes = require('./routes/auth');
 const indexRoutes = require('./routes/index');
 const productRoutes = require('./routes/product');
